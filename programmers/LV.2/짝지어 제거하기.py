@@ -20,3 +20,4 @@ def solution(s):
 
 print(solution(s))
 
+# 확인
