@@ -1,9 +1,9 @@
+from collections import deque	
+
 def solution(s):
     x=len(s)
     answer=0
-    arr=[]
-    for i in s:
-        arr.append(i)
+    arr=list(s)
     for i in range(x):
         stack=[]
         for j in arr:
