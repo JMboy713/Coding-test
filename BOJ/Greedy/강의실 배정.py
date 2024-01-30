@@ -1,4 +1,5 @@
 import sys
+import heapq
 input=sys.stdin.readline
 
 N=int(input())
@@ -7,19 +8,21 @@ for i in range(N):
     start,end=map(int,input().split())
     array.append([start,end])
 
-array.sort(key=lambda x: (x[1]))
-ans=[]
+array.sort(key=lambda x: x[0])
 
-for i in range(len(array)):
-    count=1
-    last=array[i][1]
-    for j in range(i,len(array)):
-        if last<=array[j][0]:
-            count+=1
-            last=array[j][1]
-    ans.append(count)
+room =[]
 
-print((ans))
+heapq.heappush(room,array[0][1])
+
+for i in range(1,N):
+    if array[i][0]<room[0]: # 현재 회의실 끝나는 시간보다 다음 회의 시작 시간이 빠르면 이어서 못한다. 
+        heapq.heappush(room,array[i][1])
+    else: # 이어서 할 수 있다면
+        heapq.heappop(room) # 새로운 회의로 시간 변경을 위해 pop 후 새 시간 push 
+        heapq.heappush(room,array[i][1])
+
+print(len(room))
+
 
 
 '''
