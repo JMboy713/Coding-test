@@ -1,0 +1,1 @@
+SELECT min(DateTime) as 시간 from animal_ins
