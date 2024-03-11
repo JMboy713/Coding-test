@@ -16,7 +16,7 @@ for _ in range(M):
     adj[src].append(dst)
     adj[dst].append(src)
 for x in range(1, N+1):
-    adj[x] = sorted(adj[x], reverse = True) # 오름차순으로 접근하기 때문에 reverse True.
+    adj[x] = sorted(adj[x]) # 오름차순으로 접근하기 때문에 reverse True.
 
 
 visited = [0] * (N+1) # No
@@ -38,27 +38,3 @@ while stack: # 스택이 비어있지 않다면.
 
 
 print(*nodes_cnt[1:])
-
-
-# N,M,R=map(int,input().split())
-# graph=[[] for _ in range(N+1)]
-# visited=["No"]*N
-# for i in range(M):
-#     a,b=map(int,input().split())
-#     graph[a].append(b)
-#     graph[b].append(a)
-# for i in graph:
-#     i.sort()
-
-# print(graph)
-
-
-
-# def dfs(visited,graph,R):
-#     visited[R]="yes"
-    
-#     for i in graph[R]:
-#         if visited[i]=="No":
-#             dfs(visited,graph,i)
-
-# print(dfs(visited,graph,R))
