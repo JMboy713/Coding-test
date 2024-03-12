@@ -26,13 +26,13 @@ dy=[1,-1,0,0]
 
 def bfs(graph,a,b):
     n=len(graph) # 그래프의 길이
-    queue=deque()
-    queue.append((a,b)) # 큐에 시작점을 넣는다. 
+    stack=deque()
+    stack.append((a,b)) # 큐에 시작점을 넣는다. 
     graph[a][b]=0 # 0으로 바꾼다. (방문함을 표시)
     count=1
 
-    while queue:
-        x,y= queue.popleft()
+    while stack:
+        x,y= stack.pop()
         for i in range(4):
             nx= x+dx[i]
             ny=y+dy[i]
@@ -40,7 +40,7 @@ def bfs(graph,a,b):
                 continue
             if graph[nx][ny]==1:
                 graph[nx][ny]=0 # 방문으로 바꿈. 
-                queue.append((nx,ny))
+                stack.append((nx,ny))
                 count+=1
     return count
 		
@@ -65,11 +65,12 @@ for i in range(N):
         if graph[i][j]==1:
             count.append(bfs(graph,i,j))
 count.sort()
+# 단지수
 print(len(count))
+# 오름차순으로 출력
 for i in range(len(count)):
     print(count[i])
 
 
 
 
-# 간선 처리->?
