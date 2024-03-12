@@ -11,26 +11,23 @@ T: int=int(input())
 dx=[1,-1,0,0]
 dy=[0,0,1,-1]
 
-def bfs(graph,a,b): # 그래프, 세로, 가로
-    height=len(graph)
-    width=len(graph[0])
-    queue=deque()
-    queue.append((a,b))
+def dfs(graph,a,b): # 그래프, 세로, 가로
+    height = len(graph)
+    width = len(graph[0])
+    stack =deque()
+    stack.append((a,b)) # 세로 가로
     graph[a][b]=0
 
-    while queue:
-        x,y=queue.popleft() # 세로 가로
+    while stack:
+        y,x=stack.pop()
         for i in range(4):
-            nx=x+dx[i] # 세로
-            ny=y+dy[i] # 가로 
-            if nx<0 or nx>=height or ny<0 or ny>=width:
+            nx=x+dx[i]
+            ny=y+dy[i]
+            if nx<0 or nx>=width or ny < 0 or ny>=height:
                 continue
-            if graph[nx][ny]==1:
-                graph[nx][ny]=0
-                queue.append((nx,ny))
-    
-
-
+            if graph[ny][nx]==1:
+                graph[ny][nx]=0
+                stack.append((ny,nx))
 
 
 
@@ -51,9 +48,21 @@ for _ in range(T):
     for i in range(N): # 세로가 와야함
         for j in range(M):
             if graph[i][j]==1:
-                bfs(graph,i,j) 
+                dfs(graph,i,j) 
                 count+=1
     result.append(count)
 
 for i in result:
     print(i)
+
+
+
+
+
+
+
+
+
+
+
+
