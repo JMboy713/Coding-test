@@ -1,19 +1,19 @@
 class Solution {
-    public int solution(int num) {
+    public int solution(long num) {
         int answer = 0; // count
         while(num!=1& answer<500){
             num = collatz(num);
-            answer+=1;
+            answer++;
         }
-        return answer<400?answer:-1;
+        return answer!=500?answer:-1;
     }
     
     
-    public static int collatz(int num){
+    public static long collatz(long num){
         if(num%2==0){
             return num/2;
         }else{
-            return num*3+1;
+            return (num*3)+1;
         }
     }
 }
