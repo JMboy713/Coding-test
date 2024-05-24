@@ -1,17 +1,13 @@
 class Solution {
     public String solution(int n) {
         String answer = "";
-                boolean bool = true;
-        while(n!=0){
-            String str = bool?"수":"박";
-            bool = invert(bool);
+        for(int i=1;i<=n;i++){
+            String str = (i%2==1)?"수":"박";
             answer+=str;
-            n--;
-        }
+        }        
+        
         return answer;
     }
-     public static boolean invert(boolean value) {
-        return !value;
-    }
+
 
 }
