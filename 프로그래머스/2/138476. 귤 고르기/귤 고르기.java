@@ -10,7 +10,7 @@ class Solution {
                 counter.put(i,1);
             }
         }
-        // System.out.println(counter);
+        
         List<Map.Entry<Integer, Integer>> sortedCounter = new ArrayList<>(counter.entrySet()); // entry set으로 list로 만든다. 
         
         sortedCounter.sort((a, b) -> b.getValue().compareTo(a.getValue())); 
@@ -23,8 +23,8 @@ class Solution {
             }
         }
 
-        Set<Integer> ans = new HashSet<>(array.subList(0, k));
-        return ans.size();
+        Set<Integer> answer = new HashSet<>(array.subList(0, k));
+        return answer.size();
         
     
     }
