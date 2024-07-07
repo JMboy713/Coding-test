@@ -1,10 +1,10 @@
 # [level 2] 행렬의 곱셈 - 12949 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12949) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12949?language=java) 
 
 ### 성능 요약
 
-메모리: 10.6 MB, 시간: 5.11 ms
+메모리: 87.5 MB, 시간: 1.59 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 03월 11일 14:35:26
+2024년 07월 07일 15:11:41
 
 ### 문제 설명
 
