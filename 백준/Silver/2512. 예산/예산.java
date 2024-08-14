@@ -1,4 +1,5 @@
 
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -22,15 +23,21 @@ public class Main {
         int solution = solution(n, values, maximum);
         System.out.println(solution);
     }
-    private static int solution(int n,String[] values, int maximum){
+    private static int solution(int n,String[] list, int maximum){
+
+        int[] values = new int[n];
+
+        for (int i = 0; i < list.length; i++) {
+            values[i] = Integer.parseInt(list[i]);
+        }
 
         int sumAll=0;
         int max = 0;
         int min = 0;
-        for (String value : values) {
-            sumAll += Integer.parseInt(value);
-            if (max < Integer.parseInt(value)) {
-                max = Integer.parseInt(value);
+        for (int value : values) {
+            sumAll += value;
+            if (max < value) {
+                max = value;
             }
         }
 
@@ -45,8 +52,8 @@ public class Main {
         while (min<=max) {
             int mid = (max + min) / 2;
             int sum = 0;
-            for (String value : values) {
-                int num = Integer.parseInt(value);
+            for (int value : values) {
+                int num = value;
                 sum += Math.min(num, mid);
             }
             if (sum <= maximum) {
