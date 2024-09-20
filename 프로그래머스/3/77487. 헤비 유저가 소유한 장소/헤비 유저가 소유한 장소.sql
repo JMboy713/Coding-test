@@ -1,0 +1,8 @@
+SELECT A.ID,A.NAME,A.HOST_ID
+FROM PLACES AS A
+    INNER JOIN (SELECT HOST_ID
+                FROM PLACES 
+                GROUP BY HOST_ID
+                HAVING COUNT(ID)>=2) AS B
+    ON B.HOST_ID = A.HOST_ID;
+    
