@@ -1,84 +1,85 @@
 import java.util.*;
 
 class Solution {
-    static String[][] graph;
-    static boolean[][] visited; // 방문 확인 배열
     static Queue<Node> q = new LinkedList<>();
-
+    static int[] dx = new int[]{0,0,-1,1};
+    static int[] dy = new int[]{-1,1,0,0};
+    static boolean[][] visited; // 방문 확인 배열
+    
     public int solution(String[] board) {
-        int[] start = new int[2];
-        graph = new String[board.length][board[0].length()];
+        int h = board.length;
+        int w = board[0].length();
+        String[][] graph = new String[h][w];
+        int[] robot = new int[2];
+        int[] goal = new int[2];
         visited = new boolean[board.length][board[0].length()];
-
-        // 보드 구성 및 시작 위치 찾기
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length(); j++) {
-                graph[i][j] = String.valueOf(board[i].charAt(j));
-                if (board[i].charAt(j) == 'R') {
-                    start[0] = i;
-                    start[1] = j;
+        
+        
+        
+        for(int i=0;i<h;i++){
+            for(int j=0;j<w;j++){
+                String str = String.valueOf(board[i].charAt(j));
+                if(str.equals("R")){
+                    robot = new int[]{i,j};
+                }else if(str.equals("G")){
+                    goal = new int[]{i,j};
                 }
+                graph[i][j] = str;
             }
         }
-
-        // 시작 위치 큐에 추가
-        q.add(new Node(start, 0));
-        visited[start[0]][start[1]] = true;
-
-        // 상, 하, 좌, 우 방향 설정
-        int[] dx = {0, 0, -1, 1}; // 좌우
-        int[] dy = {-1, 1, 0, 0}; // 상하
-
-        // BFS 탐색
-        while (!q.isEmpty()) {
+        Node n = new Node(robot , 0);
+        visited[robot[0]][robot[1]]=true;
+        q.add(n);
+        
+        
+        //D에 부딪히거나 나갈거 같을 때 그때 node에 넣는다. 
+        while(!q.isEmpty()){
             Node node = q.poll();
-            int y = node.point[0];
-            int x = node.point[1];
             int count = node.count;
-
-            // 목표 지점에 도달하면 이동 횟수 반환
-            if (graph[y][x].equals("G")) {
+            int[] dot = node.dot;
+            int y = dot[0];
+            int x = dot[1];
+            if(graph[y][x].equals("G")){
                 return count;
             }
-
-            // 4 방향으로 미끄러지기
-            for (int i = 0; i < 4; i++) {
-                int ny = y;
-                int nx = x;
-
-                // 해당 방향으로 장애물이나 끝에 도달할 때까지 이동
-                while (true) {
-                    int ty = ny + dy[i];
-                    int tx = nx + dx[i];
-
-                    // 경계 체크 및 장애물 체크
-                    if (ty < 0 || ty >= graph.length || tx < 0 || tx >= graph[0].length) break;
-                    if (graph[ty][tx].equals("D")) break;
-
-                    ny = ty;
-                    nx = tx;
+            
+            
+            for(int i=0;i<4;i++){
+                int newx = x;
+                int newy = y;
+                while(true){
+                    // 그래프로 갈 수 있는곳 까지.
+                    int moveX = newx+dx[i];
+                    int moveY = newy+dy[i];
+                    if(moveX<0 || moveX>=w || moveY<0 || moveY>=h 
+                       || graph[moveY][moveX].equals("D")){
+                        break;
+                    }
+                    newx = moveX;
+                    newy = moveY;
                 }
-
-                // 방문하지 않은 좌표라면 큐에 추가
-                if (!visited[ny][nx]) {
-                    visited[ny][nx] = true;
-                    q.add(new Node(new int[]{ny, nx}, count + 1));
-                }
+                if(!visited[newy][newx]){
+                    Node newNode = new Node(new int[]{newy,newx},count+1);
+                    q.add(newNode);
+                    visited[newy][newx]=true;
+                }   
             }
+            
         }
-
-        // 목표 지점에 도달할 수 없으면 -1 반환
+        
+        
+        
         return -1;
     }
-
-    // Node 클래스 정의
-    class Node {
-        int[] point;
-        int count;
-
-        public Node(int[] point, int count) {
-            this.point = point;
+    
+    
+    class Node{
+        public int count;
+        public int[] dot;
+        
+        public Node(int[] dot,int count){
             this.count = count;
+            this.dot = dot;
         }
     }
 }
