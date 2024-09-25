@@ -1,0 +1,8 @@
+SELECT ID, 
+    CASE 
+    WHEN SIZE_OF_COLONY <=100 then 'LOW'
+    when SIZE_OF_COLONY >1000 then 'HIGH'
+    ELSE 'MEDIUM'
+    End as SIZE
+FROM ECOLI_DATA
+ORDER BY ID;
