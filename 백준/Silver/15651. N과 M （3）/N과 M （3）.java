@@ -56,16 +56,12 @@ public class Main {
         String[] split = line.split(" ");
         int N = Integer.parseInt(split[0]);
         int M = Integer.parseInt(split[1]);
-        if (M == 1) {
-            for (int i = 1; i <= N; i++) {
-                System.out.println(i);
-            }
-        }else{
-            StringBuilder sb = new StringBuilder();
-            List<Integer> stack = new ArrayList<>();
-            dfs(stack, N, M,sb);
-            System.out.println(sb);
-        }
+
+        StringBuilder sb = new StringBuilder();
+        List<Integer> stack = new ArrayList<>();
+        dfs(stack, N, M,sb);
+        System.out.println(sb);
+        
     }
 
     private static void dfs(List<Integer> arr, int n, int m,StringBuilder sb) {
