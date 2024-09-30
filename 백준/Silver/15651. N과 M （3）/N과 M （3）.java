@@ -48,7 +48,7 @@ import java.util.*;
 public class Main {
 
 
-    static StringBuilder sb = new StringBuilder();
+
     public static void main(String[] args) throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -61,13 +61,14 @@ public class Main {
                 System.out.println(i);
             }
         }else{
-            Stack<Integer> stack = new Stack<>();
-            dfs(stack, N, M);
+            StringBuilder sb = new StringBuilder();
+            List<Integer> stack = new ArrayList<>();
+            dfs(stack, N, M,sb);
             System.out.println(sb);
         }
     }
 
-    private static void dfs(Stack<Integer> arr, int n, int m) {
+    private static void dfs(List<Integer> arr, int n, int m,StringBuilder sb) {
         if (arr.size() == m) {
 
             for (int i = 0; i < arr.size(); i++) {
@@ -82,8 +83,8 @@ public class Main {
         }else{
             for (int i = 1; i <= n; i++) {
                 arr.add(i);
-                dfs(arr, n, m);
-                arr.pop();
+                dfs(arr, n, m,sb);
+                arr.remove(arr.size()-1);
             }
         }
     }
