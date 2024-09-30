@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -61,20 +60,17 @@ public class Main {
         List<Integer> stack = new ArrayList<>();
         dfs(stack, N, M,sb);
         System.out.println(sb);
-        
+
     }
 
     private static void dfs(List<Integer> arr, int n, int m,StringBuilder sb) {
         if (arr.size() == m) {
 
             for (int i = 0; i < arr.size(); i++) {
-                if (i != arr.size() - 1) {
                     sb.append(arr.get(i));
                     sb.append(" ");
-                }else{
-                    sb.append(arr.get(i));
                 }
-            }
+            
             sb.append("\n");
         }else{
             for (int i = 1; i <= n; i++) {
