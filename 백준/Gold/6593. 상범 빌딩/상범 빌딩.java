@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -64,7 +63,7 @@ public class Main {
             int L = Integer.parseInt(split[0]);
             int R = Integer.parseInt(split[1]);
             int C = Integer.parseInt(split[2]);
-            int sec = 0;
+            int min = 0;
             if (L == 0 & R == 0 & C == 0) {
                 break;
             }else{
@@ -85,12 +84,12 @@ public class Main {
                     }
                     br.readLine();
                 }
-                sec = bfs(L, R, C);
+                min = bfs(L, R, C);
             }
-            if (sec == 0 ) {
+            if (min == 0) {
                 System.out.println("Trapped!");
             }else{
-                System.out.println("Escaped in " + sec + " minute(s).");
+                System.out.println("Escaped in " + min + " minute(s).");
             }
         }
     }
