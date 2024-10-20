@@ -37,9 +37,11 @@ public class Main {
 
     private static void backTracking(int num, int m, List<Integer> list, boolean[] visited) {
         if (list.size() == m) {
-            for (Integer i : list) {
-                System.out.print(i+" ");
+            StringBuilder sb = new StringBuilder();
+            for (int numb : list) {
+                sb.append(numb).append(' ');
             }
+            System.out.print(sb.toString().trim());
             System.out.println();
             return;
         }
