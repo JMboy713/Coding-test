@@ -11,6 +11,7 @@ import java.util.*;
 자연수 N과 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
 
 1부터 N까지 자연수 중에서 중복 없이 M개를 고른 수열
+고른 수열은 오름차순이어야 한다.
 
 3 1
 * */
@@ -33,15 +34,16 @@ public class Main {
 
 
 
+
     }
 
     private static void backTracking(int num, int m, List<Integer> list, boolean[] visited) {
         if (list.size() == m) {
             StringBuilder sb = new StringBuilder();
-            for (int numb : list) {
-                sb.append(numb).append(' ');
+            for (Integer i : list) {
+                sb.append(i).append(" ");
             }
-            System.out.print(sb.toString().trim());
+            System.out.print(sb.toString());
             System.out.println();
             return;
         }
